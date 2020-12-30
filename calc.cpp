@@ -23,6 +23,7 @@ void calc(u16 *dist, const int len, int *min)
 	  }  
 	cout << endl;
 	//获取极小值点 
+	cout << "极小值" << endl; 
 	for(i = 0; i < len - 2; i++)
 	{
 		if(dif[i] <= 0 && dif[i + 1] > 0)
@@ -32,7 +33,7 @@ void calc(u16 *dist, const int len, int *min)
 			else
 			{
 			    if(dist[i+1] < dist[min[0]] && dist[min[0]] > dist[min[1]]) min[0] = i+1;
-	    	    else if(dist[i+1] < dist[min[1]]) min[1] = i+1;
+	    	    if(dist[i+1] < dist[min[1]] ) min[1] = i+1;
 			}
 		    cout << dist[i+1] << " "; 
 		}
@@ -88,4 +89,3 @@ main()
  //5  10
  //44 122
  
- //添加一句话：去你大爷 
