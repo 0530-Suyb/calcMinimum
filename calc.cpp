@@ -11,8 +11,10 @@ void calc(u16 *dist, const int len, int *min)
 	int dif[len-1]; //存放差值（斜率）
 	u16 x1, x2, x;
 	
-	min[0] = 1000;
-	min[1] = 1000;
+	//在此将两端值假设最小 
+	min[0] = 0;
+	min[1] = len - 1;
+	cout << dist[min[1]] << endl;
 	
 	//计算差值 
 	cout << "差值" << endl; 
@@ -23,35 +25,24 @@ void calc(u16 *dist, const int len, int *min)
 	  }  
 	cout << endl;
 	//获取极小值点 
-	cout << "极小值" << endl; 
+	cout << "极小值" << endl;
 	for(i = 0; i < len - 2; i++)
 	{
 		if(dif[i] <= 0 && dif[i + 1] > 0)
 		{
-			if(j < 2)
-			    min[j++] = i+1;
-			else
+			if(dist[i+1] < dist[min[0]] || dist[i+1] < dist[min[1]])
 			{
-			    if(dist[i+1] < dist[min[0]] && dist[min[0]] > dist[min[1]]) min[0] = i+1;
-	    	    if(dist[i+1] < dist[min[1]] ) min[1] = i+1;
-			}
-		    cout << dist[i+1] << " "; 
+				if(dist[min[0]] < dist[min[1]])
+					min[1] = i+1;
+				else
+					min[0] = i+1;
+			 }
 		}
+		cout << dist[i+1] << " "; 
 	}
-	if(dif[0] > 0)
-	{
-		 
-	}
-	if(dif[len-2] < 0)  
-	{
-		
-    }
-
-	x1 = dist[min[0]];
-	x2 = dist[min[1]];
-	cout << min[0] << " " << min[1] << endl;
-	x = sqrt(x1*x1+x2*x2-2*x1*x2*cos(3.141592 * 9*(min[0]-min[1]) / 180));
-	cout << "distance：" << x << endl;
+	cout << endl;
+	cout << "最小两位极小值" << endl;
+	cout << dist[min[0]] << ' ' << dist[min[1]] << endl; 
 }
 
 main()
@@ -67,14 +58,8 @@ main()
     	    cin >> dist[i];
 	    }
 	    calc(dist, 11, min);
-	
-    	cout << endl;
-	    cout << (int)min[0] << ' ' << (int)min[1] << endl;
-	    cout << dist[min[0]] << ' ' <<dist[min[1]] << endl;
+	    cout << endl;
      }
-     
-     
-     
  } 
  
  //100 1000 1000 1000 1000 1000 1000 1000 1000 1000 100
@@ -89,3 +74,4 @@ main()
  //5  10
  //44 122
  
+ //500 400 500 500 500 600 300 700 200 800 100
