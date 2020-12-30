@@ -15,6 +15,7 @@ void calc(u16 *dist, const int len, int *min)
 	min[1] = 1000;
 	
 	//计算差值 
+	cout << "差值" << endl; 
 	for(i = 0; i < len - 1; i++)
 	{
 		dif[i] = dist[i + 1] - dist[i];
@@ -86,3 +87,5 @@ main()
  //300 440 550 229 112 44 234 456 1333 1346 122
  //5  10
  //44 122
+ 
+ //添加一句话：去你大爷 
